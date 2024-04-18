@@ -1,0 +1,3 @@
+spotdl
+pyTelegramBotAPI
+python-dotenv
