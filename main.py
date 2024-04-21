@@ -45,7 +45,7 @@ def download_playlist(message):
         return
     bot.reply_to(message, "Downloading playlist... This may take a while.")
     download(message=message)
-
+    bot.reply_to(message, "Finished downloading playlist.")
 
 @bot.message_handler(func=lambda message: message.text.startswith('https://open.spotify.com/album/'))
 def download_album(message):
@@ -54,5 +54,5 @@ def download_album(message):
         return
     bot.reply_to(message, "Downloading album... This may take a while.")
     download(message=message)
-
+    bot.reply_to(message, "Finished downloading album.")
 bot.infinity_polling()
