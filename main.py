@@ -20,7 +20,7 @@ def send_welcome(message):
     bot.reply_to(message, "Howdy, how are you doing?")
 
 @bot.message_handler(func=lambda message: message.text.startswith('https://open.spotify.com/track/'))
-def echo_all(message):
+def download(message):
     if not is_authorized(message):
         bot.reply_to(message, "You are not authorized to use this bot.")
         return
@@ -38,3 +38,20 @@ def echo_all(message):
         if 'An error occurred' in line:
             break
 bot.infinity_polling()
+
+@bot.message_handler(func=lambda message: message.text.startswith('https://open.spotify.com/playlist/'))
+def download_playlist(message):
+    if not is_authorized(message):
+        bot.reply_to(message, "You are not authorized to use this bot.")
+        return
+    bot.reply_to(message, "Downloading playlist... This may take a while.")
+    download(message=message)
+
+
+@bot.message_handler(func=lambda message: message.text.startswith('https://open.spotify.com/album/'))
+def download_album(message):
+    if not is_authorized(message):
+        bot.reply_to(message, "You are not authorized to use this bot.")
+        return
+    bot.reply_to(message, "Downloading album... This may take a while.")
+    download(message=message)
