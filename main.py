@@ -40,6 +40,8 @@ def download(message):
         # remove everything after 'https://'
         if ': https://' in line:
             line = line.split(': https://')[0]
+        if 'https://' in line:
+            line = line.split('https://')[0]
         if line.strip() != '':
             bot.send_message(message.chat.id, line)
         if 'An error occurred' in line:
