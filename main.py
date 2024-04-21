@@ -37,7 +37,6 @@ def download(message):
             bot.send_message(message.chat.id, line)
         if 'An error occurred' in line:
             break
-bot.infinity_polling()
 
 @bot.message_handler(func=lambda message: message.text.startswith('https://open.spotify.com/playlist/'))
 def download_playlist(message):
@@ -55,3 +54,5 @@ def download_album(message):
         return
     bot.reply_to(message, "Downloading album... This may take a while.")
     download(message=message)
+
+bot.infinity_polling()
