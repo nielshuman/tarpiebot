@@ -6,6 +6,8 @@ import subprocess
 load_dotenv()
 
 bot = telebot.TeleBot(os.getenv('TELEGRAM_BOT_TOKEN'))
+location = os.getenv('DOWNLOAD_LOCATION')
+
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
@@ -13,7 +15,7 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda message: message.text.startswith('https://open.spotify.com/track/'))
 def echo_all(message):
-    download_process = subprocess.Popen(['python3', '-m', 'spotdl', message.text], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    download_process = subprocess.Popen(['python3', '-m', 'spotdl', message.text], stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=location)
     bot.reply_to(message, "Downloading...")
     for line in download_process.stdout:
         line = line.decode('utf-8')
