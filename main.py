@@ -31,7 +31,7 @@ def download(message):
     if not is_authorized(message):
         bot.reply_to(message, "You are not authorized to use this bot.")
         return
-    command = ['python3', '-m', 'spotdl', message.text, '--output', '"{artist}/{album}/{track} - {title}"']
+    command = ['python3', '-m', 'spotdl', message.text, '--output', '"{artist}/{album}/{track-number} {title}"']
     download_process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=location)
     bot.reply_to(message, "Downloading...")
     for line in download_process.stdout:
