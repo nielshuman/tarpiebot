@@ -1,0 +1,15 @@
+[Unit]
+Description=Yams
+After=display-manager.service
+
+[Service]
+Type=simple
+User=niels
+WorkingDirectory=/home/niels
+Environment="NON_INTERACTIVE=1"
+ExecStart=/usr/bin/python3 -m yams -N
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

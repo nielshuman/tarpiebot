@@ -1,0 +1,14 @@
+[Unit]
+Description=Telegram Bot Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/home/niels/tarpiebot
+ExecStart=/usr/bin/python3 /home/niels/tarpiebot/main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
